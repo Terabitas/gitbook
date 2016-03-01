@@ -299,7 +299,7 @@ If your API server has `Dockerile` in it's root directory, like [this](https://g
 
 # Summary
 
-As you see this whole process is fully customizable. But idea is that `nildev` should have default one which would cover 80% of use cases. Ideally developer would have to run only this:
+As you see this whole process is fully customizable. But idea is that `nildev` should have default one which would cover 80% of use cases. Ideally developer would have to write only endpoint handlers and run this:
 
 ```
 nildev build github.com/my/project
