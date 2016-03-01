@@ -4,7 +4,7 @@
 
 ## `api-server`
 
-* Production ready
+* Make it production ready
 
 ## `nildev io,r`
 
