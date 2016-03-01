@@ -128,7 +128,6 @@ With query you can define what parameters can be passed in query string, which a
 // @query {userName:[a-z]+} {email:[a-z]+}
 function Endpoint(userName string, email string, required int, optional *bool) (err error){
 }
-`
 ```
 
 If you do not need any regular expression checks on your parameters then you can leave out `@query` tag. It will be taken from function signature. Pointer parameters will be made optional and if won't be passed, it's value will be `nil`.
