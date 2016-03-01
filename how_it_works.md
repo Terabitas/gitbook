@@ -1,4 +1,4 @@
-# How it works
+# Build process
 
 General flow is as follows.
 
