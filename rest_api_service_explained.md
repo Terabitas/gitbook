@@ -179,7 +179,7 @@ Or just `err`:
 {"err":"error msg"}
 ```
 
-Also `msg` value will depend either we will send in body `email` or not:
+Also `msg` value will depend on the fact either we will send in body `email` or not:
 ```
 {"email":"email@sss.lt"}
 ```
