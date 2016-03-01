@@ -49,7 +49,7 @@ This template has everything you need to start building REST API. Moreover it in
 
 ## API Endpoint functions
 
-As I already mentioned, project template we have used has everything prepared and ready to be build. But let's open `authx.go` (if you have named your service differently name of file will be `your_name.go`) and go through it.
+As already mentioned, project template we have used has everything prepared and ready to be build. But let's open `authx.go` (if you have named your service differently name of file will be `your_name.go`) and go through it.
 
 In file you will find two functions:
 ```
