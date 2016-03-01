@@ -50,7 +50,7 @@ Will result in minimal docker container with binary on it which will contain ful
 * JWT middleware enabled for `/protected` endpoint
 * CORS middleware enabled
 
-Whole idea is to allow developer to focus on domain logic and delegate the rest to `nildev`. This code generation and building process is fully customizable and every single bit of it can be modified. But as `nildev` is open source project, aggregated community experience would result to recommended configuration which in 80% of use cases should be enough.
+Whole idea is to allow developer to focus on domain logic and delegate the rest to `nildev`. This code generation and building process is fully customizable and every single bit of it can be modified. But as `nildev` is open source project, aggregated community experience would result to recommended configuration which in 80% of use cases should be enough. 
 
 
 # Where to start ?
