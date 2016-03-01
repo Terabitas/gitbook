@@ -58,7 +58,6 @@ func ProtectedResource(user registry.User) (result bool, err error)
 ```
 
 These two functions is our endpoint handlers. Once we will build our final service binary it will serve two endpoints which will be executing these functions. Bottom line is that every exported function in root package will become and endpoint. This means that to expose REST API endpoint all you have to do is to create exported function:
-
 ```
 function DoSomething() (err error){
     return nil
