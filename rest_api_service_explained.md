@@ -153,7 +153,7 @@ If valid `JWT` token will be passed `user` variable will contain data from `JWT`
 
 ## Actual function code
 
-Once your endpoint function is defined you can focus on code that matters. Inside of this function we should write code that is unique to your endpoint. Connect to DB, access other services, transform data and so fourth. There are no limitations. 
+Once your endpoint function is defined you can focus on code that matters. Inside of this function you should write code that is unique to your endpoint. Connect to DB, access other services, transform data and so fourth. There are no limitations. 
 
 Let's change our service to accept third optional `email` parameter. We do that by making `email` of `*string` type. We also have added one more response parameter `msg`. After changes our service looks like this:
 ```
