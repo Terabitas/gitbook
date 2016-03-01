@@ -92,7 +92,9 @@ As you have noticed in comments we have couple of tags which are used to configu
 
 ### `@path` 
 
-Within this tag you can configure your endpoint path. Under the hood it uses `gorilla/mux` (docs here). Every endpoint will be prepended with base path `/api/v[0-9]{1}`. Meaning that:
+Within this tag you can configure your endpoint path. Under the hood it uses `gorilla/mux` (docs [here](http://www.gorillatoolkit.org/pkg/mux)). 
+
+Every endpoint also will be prepended with base path `/api/v[0-9]{1}`. Meaning that:
 ```
 // @path /custom-register/{provider}
 ``` 
@@ -102,7 +104,7 @@ Will be available at:
 /api/v1/custom-register/{provider}
 ```
 
-In path you can use `{variable:[a-z]}` as explained in `gorilla/mux` documentation. These variable names should matched signature parameter names:
+In path you can use `{variable:[a-z]}` as explained in `gorilla/mux` [documentation](http://www.gorillatoolkit.org/pkg/mux#Route.Path). These variable names should matched signature parameter names:
 ```
 // @path /custom/{provider}
 function Endpoint(provider string) (err error){
@@ -115,14 +117,14 @@ By default if this tag is not presented endpoint will be available under `GET` m
 ```
 // @method POST DELETE
 function Endpoint(provider string) (err error){
+    ...
 }
 `
 ```
 
 ### `@query`
 
-With query you can define what parameters can be passed in query string, which are required to match route and which are optional. Under the hood we use again `gorilla/mux`.
-For example:
+With query you can define what parameters can be passed in query string, which are required to match route and which are optional. Under the hood we use again `gorilla/mux`. For example:
 ```
 // @query {userName:[a-z]+} {email:[a-z]+}
 function Endpoint(userName string, email string, required int, optional *bool) (err error){
@@ -130,7 +132,7 @@ function Endpoint(userName string, email string, required int, optional *bool) (
 `
 ```
 
-If you do not need any regular expression checks on your parameters then you can leave out `@query` tag. It will be taken from function signature. Pointer parameters will be made optional and if won't be passed value will be `nil`.
+If you do not need any regular expression checks on your parameters then you can leave out `@query` tag. It will be taken from function signature. Pointer parameters will be made optional and if won't be passed, it's value will be `nil`.
 
 You can have `@query` tag for `POST` methods as well. Just if you will add in function signature parameter which will not be included in `path` or `query` then this parameter will be expected in request body.
 
