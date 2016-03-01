@@ -43,7 +43,7 @@ nildev create --config=~/authx-service.json \
 
 Do not forget to include variables in `your-service-config.js` once you will add it to your project template.
 
-## Project template `prj-tpl-basicc-api`
+## Project template `prj-tpl-basic-api`
 
 This template has everything you need to start building REST API. Moreover it includes code required to persist/read data from MongoDB, sample endpoints, docker-compose configurations.
 
