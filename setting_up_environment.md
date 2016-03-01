@@ -6,11 +6,11 @@ Setup `Golang` development environment. Required `go` version is `1.5` or newer.
 
 ## `docker`
 
-Instal `docker`. [Here](https://docs.docker.com/engine/installation/) you can find detailed information how to do that. We recommend using [docker-machine](https://docs.docker.com/machine/install-machine/) for Mac users.
+Install `docker`. [Here](https://docs.docker.com/engine/installation/) you can find detailed information how to do that. We recommend using [docker-machine](https://docs.docker.com/machine/install-machine/) for Mac users.
 
 ##`docker-compose`
 
-Instal `docker-compose`. [Here](https://docs.docker.com/compose/install/) you can find detailed information how to do that.
+Install `docker-compose`. [Here](https://docs.docker.com/compose/install/) you can find detailed information how to do that.
 
 ## `nildev`
 
