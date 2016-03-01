@@ -6,7 +6,7 @@ This document will guide you through the steps required to create a working REST
 
 ## 1. Create REST API project skeleton
 
-Create `servicex.json` file at your home directory and replace keywords `servicex`, `your_org` with your own.
+Create `servicex.json` file at your home directory:
 ```
 {
   "ApiName":"servicex",
@@ -19,7 +19,7 @@ Create `servicex.json` file at your home directory and replace keywords `service
 }
 ```
 
-Create new project (replace `servicex`, `your_org` with your own):
+Create new project:
 
 ```
 nildev create --config=~/servicex.json github.com/your_org/servicex
@@ -27,7 +27,7 @@ nildev create --config=~/servicex.json github.com/your_org/servicex
 
 ## 2. Build REST API docker image
 
-Run the following (replace `servicex`, `your_org` with your own):
+Run the following:
 
 ```
 nildev build github.com/your_org/servicex
