@@ -296,3 +296,15 @@ This is self explanatory. Once we have all code generated we just produce binary
 # Building docker image
 
 If your API server has `Dockerile` in it's root directory, like [this](https://github.com/nildev/api-host/blob/master/Dockerfile) one here at `api-host`, then `api-builder` will build and image. This bit is done [here](https://github.com/nildev/api-builder/blob/master/build.sh#L44)
+
+# Summary
+
+As you see this whole process is fully customizable. But idea is that `nildev` should have default one which would cover 80% of use cases. Ideally developer would have to run only this:
+
+```
+nildev build github.com/my/project
+```
+
+And as result docker image with fully working REST API endpoint would be produced.
+
+
