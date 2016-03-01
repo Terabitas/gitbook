@@ -1,11 +1,10 @@
 # REST API service explained
 
-
 Before you begin, please follow [Setting up environment](setting_up_environment.md) section if you haven't done that yet.
 
 ## Overview
 
-In this guide we will create REST API service and will produce docker image. 
+In this guide we will create REST API service and will produce docker image. This guide is a detailed version of [this guide](rest_api_in_less_than_3_minutes.md).
 
 ## Setup project skeleton
 
