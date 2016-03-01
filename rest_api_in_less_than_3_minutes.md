@@ -39,11 +39,9 @@ Create `local.env` file in `$GOPATH/src/github.com/your_org/servicex`:
 
 ```
 ND_DATABASE_NAME=Sessions
-ND_MONGODB_URL=mongodb://YOUR_DOCKER_MACHINE_IP:27017/nildev
+ND_MONGODB_URL=mongodb://mongodb.authx.nildev:27017/nildev
 ND_ENV=dev
 ```
-
-`YOUR_DOCKER_MACHINE_IP` is IP of machine where docker containers will be running. If you are using `docker-machine` you can get this IP by running `docker-machine ip your_machine_name`.
 
 Now run your service:
 ```
