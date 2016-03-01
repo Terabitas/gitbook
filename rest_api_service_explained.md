@@ -213,18 +213,20 @@ In [next](how_it_works.md) chapter we will explain more in details building proc
 Once our image is ready we can run our service. Let's create `local.env` file with content:
 ```
 ND_DATABASE_NAME=Sessions
-ND_MONGODB_URL=mongodb://YOUR_DOCKER_MACHINE_IP:27017/nildev
+ND_MONGODB_URL=mongodb://mongodb.authx.nildev:27017/nildev
 ND_ENV=dev
 ```
 
-`YOUR_DOCKER_MACHINE_IP` is IP of machine where docker is running. If you are using `docker-machine` you can check it by running `docker-machine ip your_machine_name`.
+Each environment will have it's own `*.env` file. We will use it to set some secrets (tokens etc.) in each environments. For example when deploying containers in kubernetes we can make use of it.
 
-Each environment will have it's own `*.env` file. We will use it to set some secrets (tokens etc.) in other environments.
-
-Once file is created, we can run our service docker containers:
+Now we can run our service:
 ```
 docker-compose -f docker-compose.yml up -d
 ```
+
+`docker-compose.yml` file is straight forward. We launch `MongoDB` and our API container there. In `local.env` we have defined `ND_MONGODB_URL=mongodb://mongodb.authx.nildev:27017/nildev` and if you will check `docker-compose.yml` you will notice that `mongodb.authx.nildev` is `MongoDB` container name.
+
+## Test it!
 
 If no errors are present it means your service is up and running, you can try to access it:
 ```
@@ -235,5 +237,12 @@ curl -X POST -d'{"email":"your"}' http://YOUR_DOCKER_MACHINE_IP/api/v1/custom-re
 ```
 
 You should be getting different results for each request.
+
+# Summary
+
+After reading this guide it should be clear how all this works. But if you would have to take one thing of all this document, let it be this:
+
+> All exported functions in root directory are converted to API endpoints, where function input parameters is endpoint input and return parameters is what your endpoint will return wrappend in JSON object. 
+
 
 
