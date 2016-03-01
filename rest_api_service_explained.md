@@ -71,7 +71,8 @@ That's it, once you build a binary you will have `GET /do-something` endpoint av
 
 > function signature parameters is our endpoint *input* and all return parameters is *output*
 
-For example `Register` method here has 2 input and 2 output parameters. We define that `provider` will be passed in request path, that endpoint will accept `POST` and that query string must contain `userName`. We defined that our response will be JSON object will contain `result` and `err`. If value is empty key will be omited and not included. 
+For example `Register` method here has 2 input and 2 output parameters. We define that `provider` will be passed in request path, that endpoint will accept `POST` and that query string must contain `userName`. We defined that our response will be JSON object which will contain `result` and `err` keys. If value of any key will be empty then key will be omitted and not included.
+
 ```
 // Register method
 // @path /custom-register/{provider}
@@ -85,7 +86,7 @@ func Register(provider string, userName string) (result bool, err error) {
 }
 ```
 
-You can have any type of input or output parameters ([here](https://github.com/nildev/lib/blob/master/codegen/parser_test.go) you can see test cases). Output parameters are being wrapped in DTO and returned to client. This means that your function signutes becomes documentation for your API user.
+You can have any type of input or output parameters ([here](https://github.com/nildev/lib/blob/master/codegen/parser_test.go) you can see test cases). Output parameters are being wrapped in DTO and returned to client. This means that your function signatures becomes documentation for your API user.
 
 As you have noticed in comments we have couple of tags which are used to configure our endpoint.
 
