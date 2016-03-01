@@ -45,7 +45,7 @@ Do not forget to include variables in `your-service-config.js` once you will add
 
 ## Project template `prj-tpl-basi-api`
 
-This template has everything you need to start building API. Moreover it includes code required to persist/read data from MongoDB, few endpoints, docker-compose configurations.
+This template has everything you need to start building REST API. Moreover it includes code required to persist/read data from MongoDB, sample endpoints, docker-compose configurations.
 
 ## API Endpoint functions
 
