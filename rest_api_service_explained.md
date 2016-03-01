@@ -138,7 +138,7 @@ You can have `@query` tag for `POST` methods as well. If you will add in functio
 
 ### `@protected`
 
-Add this tag if you want to protect your endpoint. Once added this will enabled `JWT` middleware and valid token will be expected in `Authorization` header. How token is generated is another topic, but [this]() service here does that. This `Auth` service is built with `nildev`.
+Add this tag if you want to protect your endpoint. Once added this will enable `JWT` middleware and valid token will be expected in `Authorization` header. How token is generated is another topic, but [this](https://github.com/nildev/auth) service here does that.
 
 For protected endpoints you can add a reserved parameter `user` in your function signature:
 ```
@@ -149,7 +149,7 @@ function Endpoint(user registry.User) (err error){
 }
 ```
 
-If valid `JWT` token will be passed `user` will allow to access `Claims`. 
+If valid `JWT` token will be passed `user` variable will contain data from `JWT`, for example `Claims`. More about `JWT` [here](https://jwt.io/).
 
 ## Actual function code
 
