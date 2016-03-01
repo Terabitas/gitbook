@@ -13,7 +13,7 @@ We will start by creating `authx-service.json` file at home directory:
 wget https://raw.githubusercontent.com/nildev/prj-tpl-basic-api/master/project.config.json -O ~/authx-service.json
 ```
 
-Update content of `authx-service.json` (replace `authx` and `your_org` with your own values):
+Content of `authx-service.json` should look like this:
 ```
 {
   "ApiName":"authx",
@@ -26,22 +26,22 @@ Update content of `authx-service.json` (replace `authx` and `your_org` with your
 }
 ```
 
-Create new project (replace `authx` and `your_org` with your own values):
+Now create new project:
 
 ```
 nildev create --config=~/authx-service.json github.com/your_org/authx 
 ```
 
-Command above will clone [this](https://github.com/nildev/prj-tpl-basic-api) project template and replace all variables with values you added to `authx-service.json`. Last argument `github.com/your_org/authx` is path relative to `$GOPATH`.
+Command above will clone [this](https://github.com/nildev/prj-tpl-basic-api) project template and will replace all variables with values you have in `authx-service.json`. Last argument `github.com/your_org/authx` indicates where project will be created. This path is relative to `$GOPATH` directory.
 
-You can create your own project template and pass it to `create` command:
+If you need you can create your own project template and pass it to `create` command:
 ```
 nildev create --config=~/authx-service.json \
               --template="git@github.com:your_org/your-prj-tpl.git" \
               github.com/your_org/authx 
 ```
 
-All variables you will add to your project template make sure to include in `your-service-config.js`.
+Do not forget to include variables in `your-service-config.js` once you will add it to your project template.
 
 ## Project template `prj-tpl-basi-api`
 
