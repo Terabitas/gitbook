@@ -305,6 +305,6 @@ As you see this whole process is fully customizable. But idea is that `nildev` s
 nildev build github.com/my/project
 ```
 
-And as result docker image with fully working REST API endpoint would be produced.
+As result docker image with fully working REST API endpoint would be produced.
 
 
