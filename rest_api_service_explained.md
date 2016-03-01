@@ -242,7 +242,7 @@ You should be getting different results for each request.
 
 After reading this guide it should be clear how all this works. But if you would have to take one thing of all this document, let it be this:
 
-> All exported functions in root directory are converted to API endpoints, where function input parameters is endpoint input and return parameters is what your endpoint will return wrappend in JSON object. 
+> All exported functions in root directory are converted to API endpoints, where function input parameters is endpoint input and return parameters is what your endpoint will return wrapped in JSON object. 
 
 
 
