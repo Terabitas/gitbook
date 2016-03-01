@@ -55,5 +55,5 @@ Whole idea is to allow developer to focus on domain logic and delegate the rest 
 
 # Where to start ?
 
-Start with [Setting up environment](setting_up_environment.md), then continue with [REST API in less than 3 minutes](rest_api_in_less_than_3_minutes.md) and [How it works](how_it_works.md) chapters. This should be enough to get you up running so you could start building your own API services.
+Start with [Setting up environment](setting_up_environment.md), then continue with [REST API in less than 3 minutes](rest_api_in_less_than_3_minutes.md) and [Build process](build_rpocess.md) chapters. This should be enough to get you up running so you could start building your own API services.
 
