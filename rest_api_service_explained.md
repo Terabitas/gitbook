@@ -188,16 +188,15 @@ Also `msg` value will depend either we will send in body `email` or not:
 
 ## Building container
 
-Now we can build our service. Building contains couple steps:
+Now we can build our service. Building process contains the following steps:
 
 1. Parse exported functions in root directory of your service
 2. Generate required integration code (Response, request objects, routes etc.)
-3. Fetch api-server that you want to use as host for your service
+3. Fetch api-server that you want to use as host for your API
 4. Build binary
 5. Build docker image
 
-All these parts we will cover in next chapters. For now just run the following:
-
+All these steps are performed by `nildev build` command:
 ```
 nildev build github.com/nildev/authx
 ```
@@ -206,6 +205,8 @@ Result should be a docker image. Check if it is there:
 ```
 docker images
 ```
+
+In [next](how_it_works.md) chapter we will explain more in details building process.
 
 ## Running your service
 
