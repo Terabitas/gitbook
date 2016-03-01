@@ -204,7 +204,7 @@ Result should be a docker image. Check if it is there:
 docker images
 ```
 
-In [next](how_it_works.md) chapter we will explain more in details building process.
+In [next](how_it_works.md) chapter we will explain building process in more details.
 
 ## Running your service
 
