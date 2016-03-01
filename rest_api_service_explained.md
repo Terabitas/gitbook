@@ -49,7 +49,7 @@ This template has everything you need to start building REST API. Moreover it in
 
 ## API Endpoint functions
 
-As already mentioned, project template we have used has everything prepared and ready to be build. But let's open `authx.go` (if you have named your service differently name of file will be `your_name.go`) and go through it.
+As already mentioned, project template we have used has everything prepared and is ready to be build. But let's open `$GOPATH/src/github.com/your_org/authx/authx.go` and go through it.
 
 In file you will find two functions:
 ```
@@ -57,7 +57,7 @@ func Register(provider string, userName string, email *string) (result bool, msg
 func ProtectedResource(user registry.User) (result bool, err error)
 ```
 
-These two functions is our endpoint handlers. Once we will build our final service binary it will serve two endpoints which will be executing these functions. Bottom line is that every exported function in root package will become and endpoint. So essentially to expose REST API endpoint all you have to do is to export function:
+These two functions is our endpoint handlers. Once we will build our final service binary it will serve two endpoints which will be executing these functions. Bottom line is that every exported function in root package will become and endpoint. This means that to expose REST API endpoint all you have to do is to create exported function:
 
 ```
 function DoSomething() (err error){
