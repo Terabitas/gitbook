@@ -246,7 +246,7 @@ func BuildRoutes() []router.Routes {
 
 If we would have passed multiple services to `--services` flag, here we would have multiple routes appended to `routes` slice.
 
-Bottom line is that `BuildRoutes()` function is interface we can use now in our API server to register routes. As done [here](https://github.com/nildev/api-host/blob/master/endpoints/router.go#L38) in `api-host` project.
+Bottom line is that `BuildRoutes()` function is interface we can use now in our API server to register routes. As it is done [here](https://github.com/nildev/api-host/blob/master/endpoints/router.go#L38) in `api-host` project.
 
 # Templates `--tpl`, `--ver`, `--org`
 
