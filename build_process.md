@@ -19,7 +19,7 @@ Idea is that this `api-builder` container could be used to automate build proces
 # Generate endpoint handler code
 
 ```
-nildev io--sourceDir github.com/username/project --tpl simple-handlers --org nildev --ver v0.1.0
+nildev io --sourceDir github.com/username/project --tpl simple-handlers --org nildev --ver v0.1.0
 ```
 
 This command will walk through the root directory of `$GOPATH/github.com/username/project` and will generate endpoint handlers for each exported function. You can run this command on any project and as result you should find `gen_init.go` inside your project's root directory.
