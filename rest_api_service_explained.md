@@ -155,7 +155,8 @@ If valid `JWT` token will be passed `user` variable will contain data from `JWT`
 
 Once your endpoint function is defined you can focus on code that matters. Inside of this function you should write code that is unique to your endpoint. Connect to DB, access other services, transform data and so fourth. There are no limitations. 
 
-Let's change our service to accept third optional `email` parameter. We do that by making `email` of `*string` type. We also have added one more response parameter `msg`. After changes our service looks like this:
+Let's change our service to accept third optional `email` parameter. We do that by making `email` of `*string` type. We also have added one more response parameter `msg`. After changes our service should look like this:
+
 ```
 // Register method
 // @path /custom-register/{provider}
@@ -171,7 +172,7 @@ func Register(provider string, userName string, email *string) (result bool, msg
 }
 ```
 
-This endpoint now will return as response either `result` and `msg`:
+This endpoint now will return as response such JSON object:
 ```
 {"result":true, "msg":"em:ss"}
 ```
