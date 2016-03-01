@@ -2,6 +2,16 @@
 
 # v1.0.0
 
+## `api-server`
+
+* Production ready
+
+## `nildev io,r`
+
+* stabilize API
+* optimize generated code (optimize templates)
+* At least 80% of unit tests coverage
+
 ## SPA
 
 * Apply same principles for producing SPA docker images
