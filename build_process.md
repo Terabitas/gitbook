@@ -7,7 +7,7 @@ nildev build github.com/username/service
 
 This command aggregates multiple different steps to do that:
 
-1. Generate endpoint handlers code
+1. Generate endpoint handler code
 2. Generate endpoints routing code
 3. Build binary
 4. Build docker image
