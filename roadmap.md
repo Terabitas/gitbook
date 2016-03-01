@@ -2,7 +2,7 @@
 
 # v1.0.0
 
-## `api-server`
+## `api-host`
 
 * Make it production ready
 
