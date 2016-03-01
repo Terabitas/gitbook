@@ -1,6 +1,7 @@
 # Summary
 
 * [Introduction](README.md)
+   * Roadmap
 * Getting started
    * [Setting up environment](setting_up_environment.md)
    * [REST API in less than 3 minutes](rest_api_in_less_than_3_minutes.md)
