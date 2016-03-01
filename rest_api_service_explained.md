@@ -134,7 +134,7 @@ function Endpoint(userName string, email string, required int, optional *bool) (
 
 If you do not need any regular expression checks on your parameters then you can leave out `@query` tag. It will be taken from function signature. Pointer parameters will be made optional and if won't be passed, it's value will be `nil`.
 
-You can have `@query` tag for `POST` methods as well. Just if you will add in function signature parameter which will not be included in `path` or `query` then this parameter will be expected in request body.
+You can have `@query` tag for `POST` methods as well. If you will add in function signature parameter which will not be included in `path` or `query` then this parameter will be expected in request body.
 
 ### `@protected`
 
