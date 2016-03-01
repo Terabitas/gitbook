@@ -14,9 +14,9 @@ This command aggregates multiple different steps to do that:
 
 All this build process is wrapped up in `api-builder` container [here](https://github.com/nildev/api-builder). And `nildev build` command is just a cli interface to it.
 
-Idea is that this `api-builder` container could be used to automate build process of final artifact - docker image. So we could use it CI, CD process.
+Idea is that this `api-builder` container could be used to automate build process of final artifact - docker image. Then we could use it CI, CD process.
 
-# Generate endpoint handlers code
+# Generate endpoint handler code
 
 ```
 nildev io--sourceDir github.com/username/project --tpl simple-handlers --org nildev --ver v0.1.0
@@ -289,76 +289,10 @@ go generate
 
 In this way you can abstract generation process. 
 
+# Building binary
 
-# Parsing endpoint functions
+This is self explanatory. Once we have all code generated we just produce binary. This is done  [here](https://github.com/nildev/api-builder/blob/master/build.sh#L34) in `api-builder`.
 
-When you run `nildev build github.com/your_org/your_service`, `nildev`goes through all `go` code in root directory of your project and parses all exported functions. After that it generates code which contains `http.HandlerFunc` functions for each of your function.
+# Building docker image
 
-Create empty project in `$GOPATH`, for example `$GOPATH/src/github.com/your_org/servicex` and inside create file `my-service.go`. Add there any number of exported functions with any kind of input parameters. Then run `nildev` to generate missing code:
-
-```
-nildev io --sourceDir=$GOPATH/src/github.com/your_org/servicex
-```
-
-Inside `$GOPATH/src/github.com/your_org/servicex` you will find generated file `gen_init.go`. It will look something like this:
-
-
-
-As you see it does not do much, just simple wiring. But it saves times as I do not need to write this code. We use here `gorilla/*` packages but if you need to have this wiring done differently you can change templates.
-
-# Defining endpoints
-
-As we already established defining endpoint means creating an exported function. But apart from that there are couple comments that helps you to define:
-
-* HTTP method
-* Query parameters
-* Path
-
-## `@method` tag
-
-Any valid HTTP method will fit here. This will end up as `Method` in `gorilla/mux`.
-
-## `@path` tag
-
-Value of this tag will end up as `Path` in `gorilla/mux`. Documentation is [here](http://www.gorillatoolkit.org/pkg/mux#Route.Path).
-
-## `@query` tag
-
-Value of this tag will end up as `Queries` in `gorilla/mux`. Docs [here](http://www.gorillatoolkit.org/pkg/mux#Router.Queries).
-
-## Optional parameter
-
-Some parameters can be optional. To define such parameter make it pointer. For example:
-
-```
-function Endpoint(optional *string) (err error) {...}
-```
-
-## Protected endpoints
-
-To protect your resource and allow it for authenticated and authorized users add `@protected` tag. For example:
-
-```
-// @protected
-function Endpoint(optional *string) (err error) {...}
-```
-When this function will be parsed, JWT middleware will be added for this route. All requests will have to have JWT token included in `Authentication` header. This is built in default [`api-host`](https://github.com/nildev/api-host) server.
-
-Besides of that if you need JWT `Claims` in your endpoint function just add `user` of type `registry.User` parameter to your endpoint signature:
-
-```
-import "github.com/nildev/lib/registry"
-
-function Endpoint(user registry.user) (err error) {...}
-```
-
-If you will generate code again:
-```
-nildev io --sourceDir=$GOPATH/src/github.com/your_org/servicex
-```
-
-You will see that data from JWT `Claims` will be passed for your endpoint function.
-
-# `api-host` servers
-
-# `api-builder` container
+If your API server has `Dockerile` in it's root directory, like [this](https://github.com/nildev/api-host/blob/master/Dockerfile) one here at `api-host`, then `api-builder` will build and image. This bit is done [here](https://github.com/nildev/api-builder/blob/master/build.sh#L44)
