@@ -1,23 +1,30 @@
 # Build process
 
-General flow is as follows.
-
-1. You create repository which contains your endpoint function
-2. `nildev` tool parses endpoint function and generates required integration code
-3. `nildev` uses built `api-builder` container to integrate selected API server with your endpoint function. It produces binary.
-4. `nildev` builds a docker image which has your service binary on it
-
-# Parsing endpoint functions
-
-When you run `nildev build github.com/your_org/your_service`, `nildev`goes through all `go` code in root directory of your project and parses all exported functions. After that it generates code which contains `http.HandlerFunc` functions for each of your function.
-
-Create empty project in `$GOPATH`, for example `$GOPATH/src/github.com/your_org/servicex` and inside create file `my-service.go`. Add there any number of exported functions with any kind of input parameters. Then run `nildev` to generate missing code:
-
+The following command is used to produce docker image:
 ```
-nildev io --sourceDir=$GOPATH/src/github.com/your_org/servicex
+nildev build github.com/username/service
 ```
 
-Inside `$GOPATH/src/github.com/your_org/servicex` you will find generated file `gen_init.go`. It will look something like this:
+This command aggregates multiple different steps to do that:
+
+1. Generate endpoint handlers code
+2. Generate endpoints routing code
+3. Build binary
+4. Build docker image
+
+All this build process is wrapped up in `api-builder` container [here](https://github.com/nildev/api-builder). And `nildev build` command is just a cli interface to it.
+
+Idea is that this `api-builder` container could be used to automate build process of final artifact - docker image. So we could use it CI, CD process.
+
+# Generate endpoint handlers code
+
+```
+nildev io--sourceDir github.com/username/project --tpl simple-handlers --org nildev --ver v0.1.0
+```
+
+This command will walk through the root directory of `$GOPATH/github.com/username/project` and will generate endpoint handlers for each exported function. You can run this command on any project and as result you should find `gen_init.go` inside your project's root directory.
+
+Generated code will look something like this:
 
 ```
 package authx
@@ -188,6 +195,114 @@ func GetVarValue(data map[string]string, name, typ string) (interface{}, error) 
 }
 
 ```
+
+In this generated file there are 3 important things:
+
+1. Input and output types
+2. HTTP Request handler
+3. Route
+
+Every time you modify your function `nildev` will regenerate this file.
+
+# Generate endpoints routing code
+
+In first step we did generate code which allows us to use our endpoint handlers in some API server. Previously generated `ge_init.go` file has public method `NildevRoutes() router.Routes` which you can use in your own server to integrate it.
+
+Or you can use [`api-host`](https://github.com/nildev/api-host) server. This is minimal REST API server which provides:
+
+* JWT support
+* CORS support
+
+No matter which option you will select the following command:
+```
+nildev r --services github.com/username/project --containerDir github.com/nildev/api-host --tpl simple-router --org nildev --ver v0.1.0
+```
+
+Will generate code that will integrate your API endpoint project with your API server. 
+
+* `--containerDir` flag indicates which API server you want to use
+* `--services x,y,z` is comma separated list of API services you want to build in
+* `--tpl`, `--org` and `--ver` is template that should be used to generate code
+
+You can run this command and as result in `--containerDir`, `gen` folder you will find `gen_init.go` file. This file will look something like this:
+
+```
+package gen
+
+import (
+	"github.com/nildev/lib/router"
+
+	githubcomusernameproject "github.com/username/project"
+)
+
+func BuildRoutes() []router.Routes {
+	routes := make([]router.Routes, 1)
+
+	routes = append(routes, githubcomusernameproject.NildevRoutes())
+
+	return routes
+}
+```
+
+If we would have passed multiple services to `--services` flag here we would have multiple routes appended to `routes` slice.
+
+Bottom line is that `BuildRoutes()` function is interface we can use now in our API server to register routes. As done [here](https://github.com/nildev/api-host/blob/master/endpoints/router.go#L38) in `api-host` project.
+
+# Templates `--tpl`, `--ver`, `--org`
+
+As you have noticed above commands takes these 3 flags. [This](https://github.com/nildev/templates) repository here hosts these templates. 
+
+Bottom line is:
+
+> Any file that has such comment at the top of the file can be used with nildev tool. 
+```
+//nildev:template organisation:template-name vX.Y.Z
+```
+
+So above commands with these flags:
+```
+... --tpl simple-handlers --org nildev --ver v0.1.0
+... --tpl simple-router --org nildev --ver v0.1.0
+```
+
+Will use these two templates:
+
+* [simple-handlers](https://github.com/nildev/templates/blob/master/rest/simple-handlers.tpl#L1)
+* [simple-router](https://github.com/nildev/templates/blob/master/rest/simple-router.tpl#L1)
+
+## How `nildev` locates these templates
+
+Current implementation just recursively iterates over `$GOPATH/src` directory and looks for files that has that comment at their first line. Meaning that if you want to use different template just create it anywhere in `$GOPATH` and add required comment.
+
+# Integrate with `go: generate`
+
+In source code where your endpoint function lives add these lines:
+```
+//go:generate nildev io --sourceDir github.com/username/project --tpl simple-handlers --org nildev --ver v0.1.0
+//go:generate nildev r --services github.com/username/project --containerDir github.com/nildev/api-host --tpl simple-router --org nildev --ver v0.1.0
+```
+
+And then you can run:
+```
+go generate
+```
+
+In this way you can abstract generation process. 
+
+
+# Parsing endpoint functions
+
+When you run `nildev build github.com/your_org/your_service`, `nildev`goes through all `go` code in root directory of your project and parses all exported functions. After that it generates code which contains `http.HandlerFunc` functions for each of your function.
+
+Create empty project in `$GOPATH`, for example `$GOPATH/src/github.com/your_org/servicex` and inside create file `my-service.go`. Add there any number of exported functions with any kind of input parameters. Then run `nildev` to generate missing code:
+
+```
+nildev io --sourceDir=$GOPATH/src/github.com/your_org/servicex
+```
+
+Inside `$GOPATH/src/github.com/your_org/servicex` you will find generated file `gen_init.go`. It will look something like this:
+
+
 
 As you see it does not do much, just simple wiring. But it saves times as I do not need to write this code. We use here `gorilla/*` packages but if you need to have this wiring done differently you can change templates.
 
