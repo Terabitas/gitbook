@@ -26,4 +26,4 @@ go get github.com/nildev/lib
 go get github.com/nildev/templates
 ```
 
-[Here](how_it_works.md) you can read more about `nildev/api-host`, `nildev/lib` and `nildev/templates`.
+[Here](build_process.md) you can read more about `nildev/api-host`, `nildev/lib` and `nildev/templates`.
